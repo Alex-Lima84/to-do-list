@@ -1,13 +1,13 @@
-import React from 'react';
-import { ITask } from '../../interfaces'
-import styles from './styles.module.css'
+import { ITask } from '../../interfaces';
+import styles from './styles.module.css';
 
 interface IProps {
     taskList: ITask[]
     handleDelete(id: number): void
+    handleEdit(task: ITask): void
 }
 
-export const TaskList = ({ taskList, handleDelete }: IProps) => {
+export const TaskList = ({ taskList, handleDelete, handleEdit }: IProps) => {
     return (
         <>
             {taskList.length > 0 ? (
@@ -18,8 +18,10 @@ export const TaskList = ({ taskList, handleDelete }: IProps) => {
                             <p>Dificuldade: {task.difficulty}</p>
                         </div>
                         <div className={styles.actions}>
-                            <i className='bi bi-pencil'></i>
-                            <i className='bi bi-trash' onClick={() => handleDelete(task.id)}></i>
+                            <i className='bi bi-pencil'
+                                onClick={() => handleEdit(task)}></i>
+                            <i className='bi bi-trash'
+                                onClick={() => handleDelete(task.id)}></i>
                         </div>
                     </div>
                 ))
